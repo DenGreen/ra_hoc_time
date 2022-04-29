@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import moment from "moment";
 import "moment/locale/ru";
 
@@ -7,7 +7,7 @@ moment.locale("ru");
 function DateTimePretty(Component) {
     function Wrapper(props) {
         const dateA = moment(props.date);
-        const dateB = moment(new Date, 'YYYY MM DD HH:mm:ss');
+        const dateB = moment(new Date(), 'YYYY MM DD HH:mm:ss');
         const date = dateA.from(dateB);
         return <Component date={date}/>
     }
@@ -26,7 +26,7 @@ function Video(props) {
     
     return (
         <div className="video">
-            <iframe src={props.url} allow="autoplay; encrypted-media"></iframe>
+            <iframe src={props.url} allow="autoplay; encrypted-media" title='1'></iframe>
             <OneDateTime date={props.date}/>
         </div>
     )
@@ -37,7 +37,7 @@ function VideoList(props) {
 }
 
 export default function App() {
-    const [list, setList] = useState([
+    const list = [
         {
             url: 'https://www.youtube.com/embed/rN6nlNC9WQA?rel=0&amp;controls=0&amp;showinfo=0',
             date: '2022-04-28 10:24:00',
@@ -68,7 +68,7 @@ export default function App() {
             date: '2017-12-02 05:24:00',
             id: "6"
         },
-    ]);
+    ];
 
     return (
         <VideoList list={list} />
